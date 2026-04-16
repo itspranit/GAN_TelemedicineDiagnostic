@@ -47,9 +47,7 @@ if uploaded_file is not None:
     # Remove the batch dimension and scale to 255
     sr_array = np.clip(preds[0].numpy(), 0.0, 1.0)
     sr_array = (sr_array * 255.0).astype(np.uint8)
-    
-    # --- COLOR CORRECTION ---
-    # Resize the original image to HR size to use strictly as a color/lighting reference
+   
     color_reference = np.array(image.resize((HR_SIZE, HR_SIZE), Image.Resampling.BICUBIC))
     
     # Force the GAN output to adopt the exact brightness and color palette of the original
